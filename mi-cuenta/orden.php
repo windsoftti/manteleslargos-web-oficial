@@ -151,8 +151,15 @@ $meta_title =
 
                                 <div class="mt-4">
 
-                                    <a
+                                    <!--<a
                                         href="confirmar-pago?id=<?= $order['id_order']; ?>"
+                                        class="btn btn-success"
+                                    >
+                                        Pagar ahora
+                                    </a>-->
+
+                                    <a
+                                        href="pagar-orden?id=<?= $order['id_order']; ?>"
                                         class="btn btn-success"
                                     >
                                         Pagar ahora

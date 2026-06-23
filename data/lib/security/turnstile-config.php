@@ -1,0 +1,4 @@
+<?php
+
+define('TURNSTILE_SITE_KEY', '0x4AAAAAADW3bbi2MJAybNqg');
+define('TURNSTILE_SECRET_KEY', '0x4AAAAAADW3bdq_Q8Lu1GWgpZ9nQiTyY4I');

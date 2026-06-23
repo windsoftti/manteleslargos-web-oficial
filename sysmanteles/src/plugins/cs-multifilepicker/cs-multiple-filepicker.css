@@ -1,0 +1,82 @@
+.cs-multiple-filepicker {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 0.25rem dashed #e7e7e7;
+  overflow: hidden;
+  background-color: #fff;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.cs-multiple-filepicker-btn {
+  display: flex;
+  height: 5rem;
+  width: 5rem;
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid #ddd;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #444;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.cs-multiple-filepicker-btn:hover {
+  background-color: #f3f3f3;
+}
+
+.cs-multiple-filepicker-btn::after {
+  content: "";
+  height: 2rem;
+  width: 2rem;
+  background-image: url('./plus.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+.cs-multiple-filepicker-img-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  margin: 0 0.5rem;
+}
+
+.cs-multiple-filepicker-img-container>img {
+  height: 5rem;
+  width: 5rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.cs-multiple-filepicker-btn-remove {
+  position: absolute;
+  display: flex;
+  background: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  top: -0.5rem;
+  right: -0.5rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.cs-multiple-filepicker-btn-remove:hover {
+  filter: drop-shadow(0 0 0.25rem crimson);
+}
+
+.cs-multiple-filepicker-btn-remove::after {
+  content: "";
+  height: 1.8rem;
+  width: 1.8rem;
+  background-image: url('./trash.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <?php include 'src/components/head.php'; ?>
+</head>
+
+<body class="hold-transition content-wrapper">
+  <div class="d-flex full-height pl-2 pr-2 flex-column justify-content-between">
+    <div class="d-none d-md-flex pl-3 pr-3 pt-3">
+      <img src="src/assets/images/logo-with-text.png" alt="logo-sistema">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-5">
+        <div class="card mt-3">
+          <div class="card-body login-card-body">
+            <h4 class="mt-4 mb-2">Iniciar sesión</h4>
+            <p class="mb-3 mb-4">Auntentícate para entrar al sistema.</p>
+
+            <form id="recover-credentials-form" class="needs-validation" autocomplete="off" novalidate>
+              <div class="form-group mb-4">
+                <label for="email">Correo electrónico:</label>
+
+                <div class="input-group">
+                  <input type="text" id="email" name="email" class="form-control" placeholder="Escribe tu correo electrónico" required>
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" name="action" value="recover_credentials">
+
+              <div class="form-group mt-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="font-size-13 text-muted">
+                    ¿Ya tienes una cuenta?
+                    <a href="login"> Iniciar sesión</a>
+                  </span>
+                  <button class="btn btn-primary">
+                    Recuperar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-md-1 col-md-6 d-none d-md-block">
+        <img class="img-fluid" src="src/assets/images/bg-login.png" alt="background">
+      </div>
+    </div>
+  </div>
+
+  <div class="position-fixed" style="bottom: 0; width:95%">
+    <div class="d-none d-md-flex pb-0 px-5 justify-content-between">
+      <span class="">© <?= date('Y'); ?> Manteles Largos</span>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="text-dark text-link" href="javascript:void(0)">Legal</a>
+        </li>
+        <li class="list-inline-item">
+          <a class="text-dark text-link" href="javascript:void(0)">Privacy</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Required scripts -->
+  <?php include 'src/components/required-scripts.php'; ?>
+
+  <script src="src/plugins/bs-validator/bs-validator.js"></script>
+  <script src="src/plugins/sweetalert/sweetalert.min.js"></script>
+  <script src="src/plugins/sweetalert/sweetalert-functions.js"></script>
+
+  <script src="src/js/recover-credentials.js"></script>
+</body>
+
+</html>

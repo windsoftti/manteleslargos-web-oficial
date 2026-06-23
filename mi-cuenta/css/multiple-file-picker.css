@@ -1,0 +1,17 @@
+.multiple-input-item:hover .icon-hidden {
+  display: block;
+}
+
+.multiple-input-item .icon-hidden {
+  position: absolute;
+  display: none;
+}
+
+.multiple-input-item-server:hover .icon-hidden {
+  display: block;
+}
+
+.multiple-input-item-server .icon-hidden {
+  position: absolute;
+  display: none;
+}

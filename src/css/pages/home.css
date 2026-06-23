@@ -1,0 +1,618 @@
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Slider section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.slider-section {
+  display: none !important;
+  box-shadow: 2px 10px 24px -8px rgb(0 0 0 / 20%);
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Search section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.search-section {
+  background-image: url('../../assets/images/backgrounds/search-background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.search-section>div {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem 1rem;
+}
+
+.search-section>div h1 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.search-section>div h2 {
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: normal;
+  display: none;
+}
+
+.search-section>div form {
+  border: 0.1rem solid #fff;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.search-section>div form input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 1px;
+  width: 1px;
+  display: none;
+}
+
+.search-section>div form input[type="checkbox"]+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.search-section>div form input[type="checkbox"]+.checkbox label {
+  color: #fff;
+  display: flex;
+  font-weight: bold;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.search-section>div form input[type="checkbox"]+.checkbox label::before {
+  content: "";
+  display: flex;
+  height: 1rem;
+  width: 1rem;
+  background-color: #fff;
+  border-radius: 100rem;
+  margin-right: 0.5rem;
+  border: 0.1rem solid var(--border-color);
+  cursor: pointer;
+}
+
+.search-section>div form input[type="checkbox"]:checked+.checkbox label::before {
+  height: 0.6rem;
+  width: 0.6rem;
+  background-color: var(--primary-color);
+  border: 0.3rem solid #fff;
+}
+
+.search-section>div form>.content {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.search-section>div form>.content>div {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-section>div form>.content>div>ion-icon {
+  position: absolute;
+  left: 0.5rem;
+  color: #fff;
+}
+
+.search-section>div form>.content>div>input[type="text"] {
+  padding-left: 2.5rem;
+}
+
+.search-section>div form>.content input::placeholder {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.search-section>div form>.content input[type="text"],
+.search-section>div form>.content select {
+  width: 100%;
+  border: 0.1rem solid #fafafa80;
+  height: 3rem;
+  background-color: #e0e0e0;
+  padding: 0.1rem 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 0.1rem;
+}
+
+.search-section>div form>.content button {
+  display: flex;
+  height: 3rem;
+  background-color: var(--primary-color);
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid var(--primary-color);
+  color: #fff;
+  padding: 0.5rem 2rem;
+  margin-top: 0.1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-section>div form>.content .dateinput {
+  display: none;
+}
+
+.search-section>div form input[type="checkbox"]:checked+.checkbox+.content .dateinput {
+  display: flex;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Event types section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.event-types-section {
+  background-color: #fff;
+  box-shadow: 2px 10px 24px -8px rgb(0 0 0 / 20%);
+}
+
+/* .event-types-section::after {
+  content: "";
+  position: absolute;
+  bottom: -4rem;
+  width: 96%;
+  height: 11rem;
+  border-top-left-radius: 10rem;
+  background: radial-gradient(100% 73% at bottom, transparent 52%, rgba(200, 200, 200, 0.3), rgba(200,200,200,0.4) 54%);
+  z-index: -1;
+  border-top-right-radius: 10rem;
+} */
+
+/* .event-types-section::after {
+  content: "";
+  position: absolute;
+  bottom: -4rem;
+  width: 96%;
+  height: 11rem;
+} */
+
+/* .event-types-section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+} */
+
+.event-types-section>div {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.event-types-section>div>a {
+  text-align: center;
+}
+
+.event-types-section>div img {
+  width: 20vw;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
+  transition: 0.2s;
+}
+
+.event-types-section>div img.hover {
+  display: none;
+  transition: 0.2s;
+}
+
+.event-types-section>div>a:hover img {
+  display: none;
+}
+
+.event-types-section>div>a:hover img.hover {
+  display: inline;
+  color:#AC7710;
+  /* margin-bottom: 0.8rem; */
+}
+
+.event-types-section>div h5 {
+  font-size: 0.7rem;
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+}
+.event-types-section>div a:hover{
+  color:#AC7710;
+}
+.event-types-section>div a{
+  color:gray;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- The most recent section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.the-most-recent-section {
+  text-align: center;
+  position: relative;
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section .info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.the-most-recent-section .top {
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section .top h2 {
+  margin: auto 3rem;
+  color: #000;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section .top p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.the-most-recent-section h4 {
+  color: #000;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 0.2rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.the-most-recent-section h5 {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.the-most-recent-section .bottom {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section h3 {
+  margin-top: 0;
+  color: #000;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  font-weight: normal;
+}
+
+.the-most-recent-section .bottom p {
+  margin: auto 2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.the-most-recent-section .button {
+  margin-top: 2rem;
+}
+
+.events-btn {
+  text-align: center;
+  padding: 0.8rem 4rem;
+  background-color: #000;
+  border: 0.1rem solid #000;
+  color: #fff;
+  /* margin: 1rem 2rem; */
+  font-size: 1rem;
+}
+
+.suscribe-btn {
+  text-align: center;
+  padding: 0.8rem 4rem;
+  background-color: #000;
+  border: 0.1rem solid #000;
+  color: var(--primary-color);
+  /* margin: 1rem 2rem; */
+  font-size: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Tips section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.tips-section>div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips-section>div .second {
+  display: none;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Media queries 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* 768px -- md */
+@media screen and (min-width: 48em) {
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Search types section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .search-section>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-section>div form {
+    width: 70%;
+  }
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Event types section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .event-types-section>div>a {
+    text-align: center;
+  }
+
+  .event-types-section>div img {
+    width: 15vw;
+  }
+
+  .event-types-section.small>div img {
+    width: 13vw;
+  }
+
+  .event-types-section>div h5 {
+    font-size: 1rem;
+  }
+
+  .event-types-section.small>div h5 {
+    font-size: 0.8rem;
+  }
+}
+
+/* 768px -- md */
+@media screen and (min-width: 64em) {
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Slider section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .slider-section {
+    display: block !important;
+    box-shadow: 2px 10px 24px -8px rgb(0 0 0 / 20%);
+  }
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Search section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .search-section {
+    background-image: none;
+  }
+
+  .search-section>div h1 {
+    color: #000;
+  }
+
+  .search-section>div h2 {
+    display: block;
+  }
+
+  .search-section>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: transparent;
+    align-items: center;
+  }
+
+  .search-section>div form {
+    width: 70%;
+    border-color: transparent;
+  }
+
+  .search-section>div form>.content {
+    flex-direction: row;
+    gap: 0.2rem;
+    border: 0.1rem solid var(--primary-color);
+    padding: 0.2rem;
+  }
+
+  .search-section>div form>.content>div {
+    flex: 1;
+  }
+
+  .search-section>div form>.content>div.search {
+    flex: 1.5;
+  }
+
+  .search-section>div form>.content input[type="text"],
+  .search-section>div form>.content select {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.20);
+  }
+
+  .search-section>div form>.content select {
+    cursor: pointer;
+  }
+
+  .search-section>div form input[type="checkbox"]+.checkbox label {
+    color: #000;
+  }
+
+  .search-section>div form input[type="checkbox"]+.checkbox label::before {
+    border-color: var(--primary-color);
+  }
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Event types section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .event-types-section>div {
+    display: grid;
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .event-types-section.small>div {
+    width: 90%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .event-types-section>div>a {
+    text-align: center;
+    border-right: 0.15rem solid #999;
+    padding-right: 1rem;
+  }
+
+  .event-types-section>div img {
+    width: 6vw;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+    transition: 0.2s;
+  }
+
+  .event-types-section.small>div img {
+    width: 4vw;
+  }
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- The most recent section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .the-most-recent-section .info {
+    display: grid;
+    grid-template:
+      "top      slider"
+      "divider  slider" 0.3rem
+      "bottom   slider"
+      "button   slider" / 20vw auto
+    ;
+    padding-left: 10vw;
+    text-align: left;
+    gap: 1rem;
+    column-gap: 2rem;
+  }
+
+  .the-most-recent-section .top {
+    grid-area: top;
+    margin-bottom: 0;
+  }
+
+  .the-most-recent-section .top h4,
+  .the-most-recent-section .top h5,
+  .the-most-recent-section .top p {
+    text-align: left;
+  }
+
+  .the-most-recent-section .top h5 {
+    margin-bottom: 0.3rem;
+  }
+
+  .the-most-recent-section .top p {
+    margin-bottom: 0;
+  }
+
+  .the-most-recent-section .divider {
+    grid-area: divider;
+  }
+
+  .the-most-recent-section .bottom {
+    grid-area: bottom;
+    margin-top: 0rem;
+    margin-bottom: 0;
+  }
+
+  .the-most-recent-section .bottom h3,
+  .the-most-recent-section .bottom p {
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .the-most-recent-section .bottom h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .the-most-recent-section .cs-slider {
+    grid-area: slider;
+  }
+
+  .the-most-recent-section .cs-slider .imgs {
+    width: 100%;
+    min-width: 23vw;
+    /* gap: 0.5rem; */
+  }
+
+  .the-most-recent-section .cs-slider .imgs img {
+    /* width: 23vw; */
+    height: 25rem;
+    min-width: 23vw;
+    object-fit: cover;
+  }
+
+  .the-most-recent-section .cs-slider .dots {
+    display: none;
+  }
+
+  .the-most-recent-section .button {
+    grid-area: button;
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .events-btn {
+    padding: 0.3rem 1rem;
+    display: block;
+  }
+
+  /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //-- Tips section
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  .tips-section>div {
+    width: 80%;
+    gap: 1rem;
+  }
+
+  .tips-section>div .second {
+    display: flex;
+  }
+
+  .tips-section>div iframe {
+    flex: 1;
+  }
+}

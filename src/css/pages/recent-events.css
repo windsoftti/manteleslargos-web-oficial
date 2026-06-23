@@ -1,0 +1,153 @@
+.recent-events-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.recent-events-section>h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.recent-events-section>div>h1 {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.recent-events-section>h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+  font-weight: normal;
+  color: gray;
+}
+
+.recent-events-section>div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 10%;
+  margin-top: 2rem;
+}
+
+.recent-events-section>div .recent-events {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.recent-event-item {
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+  padding: 1.5rem;
+  border-radius: 0.2rem;
+}
+
+.recent-event-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 10rem;
+}
+
+.recent-event-item h3 {
+  font-weight: normal;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin: 0;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.recent-event-item p {
+  margin: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.recent-event-item a {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.recent-events-section>div>h4 {
+  font-weight: normal;
+  font-size: 1rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.recent-events-section>div>h3 {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.cs-slider .imgs img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.recent-events-section>div.other-events {
+  align-items: flex-start;
+  background-color: transparent;
+  margin-top: 0.5rem;
+}
+
+.recent-events-section>div.other-events>h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.recent-events-section>div.other-events>div {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.description {
+  width: 80%;
+  margin-top: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Media queries 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+/* 1024px -- md */
+@media screen and (min-width: 64em) {
+  .cs-slider .imgs {
+    width: 75%;
+  }
+
+  .cs-slider .imgs img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+  }
+}

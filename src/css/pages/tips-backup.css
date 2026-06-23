@@ -1,0 +1,300 @@
+.tips-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips-section>iframe {
+  margin-bottom: 2rem;
+  height: 18rem;
+}
+
+.tips-section>h1 {
+  margin: 0;
+  color: #000;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.tips-section>h2 {
+  margin: auto 0.5rem;
+  color: #000;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.tips-section>h1>ion-icon {
+  font-size: 3rem;
+  color: red;
+}
+
+.big-tip {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 10px 24px -8px rgb(0 0 0 / 20%);
+  padding: 1rem;
+}
+
+.big-tip>img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.big-tip>div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.big-tip>div h3 {
+  margin: 0;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.big-tip>div h2 {
+  margin: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+  font-size: 1.5rem;
+}
+
+.big-tip>div p {
+  color: #000;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.big-tip>div a {
+  display: flex;
+  background-color: #000;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.5rem 2rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Tips slider
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.tips-slider {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.tips-slider>a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips-slider>a.arrow.desktop {
+  display: none;
+}
+
+.tips-slider>a.arrow.left {
+  transform: rotate(-90deg);
+}
+
+.tips-slider>a.arrow.right {
+  transform: rotate(90deg);
+}
+
+.tips-slider>a>img {
+  height: 2rem;
+  width: 2rem;
+  object-fit: contain;
+}
+
+.tips-slider>div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips-slider>div .tip-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .tips-slider>div .tip-row.active {
+  display: flex;
+} */
+
+.tip {
+  display: flex;
+  /* width: 100%; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+}
+
+.tip.active {
+  display: flex;
+}
+
+.tip>.tip-images {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  gap: 0.1rem;
+}
+
+.tip>.tip-images>img {
+  flex: 1;
+  width: 33%;
+  height: 6rem;
+  object-fit: cover;
+}
+
+.tip>.tip-info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.tip>.tip-info h3 {
+  margin: 0;
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.tip>.tip-info h2 {
+  margin: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+  font-size: 1rem;
+}
+
+.tip>.tip-info p {
+  color: #000;
+  font-size: 1rem;
+}
+
+.tip>.tip-info p {
+  color: #000;
+  font-size: 1rem;
+}
+
+.tip>.tip-info a {
+  display: flex;
+  background-color: #000;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  font-size: 0.9rem;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #000;
+  font-size: 2rem;
+}
+
+.slick-next {
+  right: -5px;
+}
+
+.slick-prev {
+  left: -18px;
+}
+
+@media screen and (min-width: 48em) {
+  .tips-slider>a.arrow.desktop {
+    display: flex;
+  }
+
+  .tips-slider>a.arrow.mobile {
+    display: none;
+  }
+
+  .tip {
+    display: flex;
+  }
+
+  .tips-slider>div .tip-row {
+    display: none;
+    gap: 1rem;
+  }
+
+  .tips-slider>div .tip-row.active {
+    display: flex;
+  }
+
+  .slick-next {
+    right: -25px;
+  }
+  
+  .slick-prev {
+    left: -25px;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .tips-slider {
+    width: 80%;
+    gap: 2rem;
+  }
+
+  .tips-slider>div .tip-row {
+    gap: 3rem;
+  }
+
+  .tip>.tip-images>img {
+    height: 8rem;
+  }
+
+  .big-tip {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem 15%;
+  }
+
+  .big-tip>img {
+    width: 15rem;
+  }
+
+  .big-tip>div p {
+    font-size: 1.1rem;
+  }
+
+  .tips-section>iframe {
+    height: 25rem;
+  }
+}

@@ -1,0 +1,169 @@
+RewriteEngine On
+RewriteBase /devs/manteles/
+
+# =========================
+# LOCALHOST CONFIG
+# =========================
+# Desactivado para localhost
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# =========================
+# STATIC ROUTES
+# =========================
+
+RewriteRule ^tips$ tips.php [QSA,L]
+RewriteRule ^politicas-de-privacidad$ politicas-de-privacidad.php [QSA,L]
+RewriteRule ^eliminar-cuenta$ eliminar-cuenta.php [QSA,L]
+RewriteRule ^agregar-negocio$ agregar-negocio.php [QSA,L]
+RewriteRule ^agregar-negocio-v2$ agregar-negocio-v2.php [QSA,L]
+RewriteRule ^crear-invitacion$ crear-invitacion.php [QSA,L]
+RewriteRule ^terminos-y-condiciones$ terminos-y-condiciones.php [QSA,L]
+RewriteRule ^negocios$ negocios.php [QSA,L]
+RewriteRule ^configuracion-cuenta$ configuracion-cuenta.php [QSA,L]
+RewriteRule ^visualizar-invitacion$ visualizar-invitacion.php [QSA,L]
+RewriteRule ^verificar-cuenta-proveedor$ verificar-cuenta-proveedor.php [QSA,L]
+RewriteRule ^soy-proveedor$ soy-proveedor.php [QSA,L]
+RewriteRule ^registro-proveedor$ registro-proveedor.php [QSA,L]
+RewriteRule ^recuperar-credenciales$ recuperar-credenciales.php [QSA,L]
+RewriteRule ^mis-invitaciones$ mis-invitaciones.php [QSA,L]
+RewriteRule ^mis-cotizaciones$ mis-cotizaciones.php [QSA,L]
+RewriteRule ^eventos-recientes$ eventos-recientes.php [QSA,L]
+RewriteRule ^disenio-personalizado$ disenio-personalizado.php [QSA,L]
+
+# =========================
+# EVENT TYPES
+# =========================
+
+RewriteRule ^bodas$ tipo-proveedores.php?eventTypeSlug=bodas [QSA,L]
+RewriteRule ^xv-anios$ tipo-proveedores.php?eventTypeSlug=xv-anios [QSA,L]
+RewriteRule ^infantiles$ tipo-proveedores.php?eventTypeSlug=infantiles [QSA,L]
+RewriteRule ^bautizos$ tipo-proveedores.php?eventTypeSlug=bautizos [QSA,L]
+RewriteRule ^convenciones$ tipo-proveedores.php?eventTypeSlug=convenciones [QSA,L]
+RewriteRule ^otros$ tipo-proveedores.php?eventTypeSlug=otros [QSA,L]
+
+# =========================
+# AUTH
+# =========================
+
+RewriteRule ^cuenta-verificada$ cuenta-verificada.php [QSA,L]
+RewriteRule ^confirmar-cuenta$ confirmar-cuenta.php [QSA,L]
+RewriteRule ^cerrar-sesion$ cerrar-sesion.php [QSA,L]
+
+# =========================
+# INVITACIONES
+# =========================
+
+RewriteRule ^invitaciones/01/([^/\.]+)$ invitacion-plantilla-01.php?invitationSlug=$1 [QSA,L]
+RewriteRule ^invitaciones/02/([^/\.]+)$ invitacion-plantilla-02.php?invitationSlug=$1 [QSA,L]
+RewriteRule ^invitaciones/03/([^/\.]+)$ invitacion-plantilla-03.php?invitationSlug=$1 [QSA,L]
+
+RewriteRule ^editar-invitacion/([^/\.]+)$ editar-invitacion.php?invitationSlug=$1 [QSA,L]
+
+# =========================
+# TIPO PROVEEDORES
+# =========================
+
+RewriteRule ^tipo-proveedores/([^/\.]+)$ tipo-proveedores.php?eventTypeSlug=$1 [QSA,L]
+
+# =========================
+# EVENTOS RECIENTES
+# =========================
+
+RewriteRule ^eventos-recientes/([^/\.]+)$ evento-reciente.php?recentEventSlug=$1 [QSA,L]
+
+# =========================
+# TIPS
+# =========================
+
+RewriteRule ^tips/([^/\.]+)$ tip.php?tipSlug=$1 [QSA,L]
+
+# =========================
+# CONFIRM ACCOUNT
+# =========================
+
+RewriteRule ^confirmar-cuenta/([^/\.]+)$ confirmar-cuenta.php?accessToken=$1 [QSA,L]
+
+# =========================
+# NEGOCIOS
+# =========================
+
+RewriteRule ^([^/\.]+)/([^/\.]+)$ negocios.php?eventTypeSlug=$1&supplierTypeSlug=$2 [QSA,L]
+
+RewriteRule ^([^/\.]+)/([^/\.]+)/([^/\.]+)$ negocio.php?eventTypeSlug=$1&supplierTypeSlug=$2&businessSlug=$3 [QSA,L]
+
+RewriteRule ^negocios/([^/\.]+)$ negocios.php?eventTypeSlug=$1 [QSA,L]
+
+RewriteRule ^negocios/([^/\.]+)/([^/\.]+)$ negocios.php?eventTypeSlug=$1&supplierTypeSlug=$2 [QSA,L]
+
+RewriteRule ^negocios/([^/\.]+)/([^/\.]+)/([^/\.]+)$ negocio.php?eventTypeSlug=$1&supplierTypeSlug=$2&businessSlug=$3 [QSA,L]
+
+# =========================
+# SINGLE BUSINESS SLUG
+# =========================
+
+RewriteRule ^([^\.]+)$ negocio.php?businessSlug=$1 [NC,L]
+
+# =========================
+# ERROR DOCUMENT
+# =========================
+
+ErrorDocument 404 "Pagina no encontrada"
+
+# =========================
+# LOCALHOST:
+# DESACTIVADO REDIRECT HTTPS
+# =========================
+
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP:X-Forwarded-SSL} !on
+# RewriteCond %{HTTP_HOST} ^manteleslargos\.com$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.manteleslargos\.com$
+# RewriteRule ^/?$ "https\:\/\/manteleslargos\.com\/" [R=301,L]
+
+# =========================
+# EXPIRES CACHING
+# =========================
+
+<IfModule mod_expires.c>
+
+    ExpiresActive on
+
+    ExpiresDefault "access plus 1 year"
+
+    ExpiresByType text/cache-manifest "access plus 0 seconds"
+
+    ExpiresByType text/html "access plus 0 seconds"
+
+    ExpiresByType text/xml "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+
+    ExpiresByType application/rss+xml "access plus 1 hour"
+    ExpiresByType application/atom+xml "access plus 1 hour"
+
+    ExpiresByType image/x-icon "access plus 1 week"
+
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+
+    ExpiresByType text/css "access plus 0 seconds"
+    ExpiresByType application/javascript "access plus 0 seconds"
+
+</IfModule>
+
+# =========================
+# GZIP / DEFLATE
+# =========================
+
+<IfModule mod_deflate.c>
+
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE text/javascript
+
+</IfModule>

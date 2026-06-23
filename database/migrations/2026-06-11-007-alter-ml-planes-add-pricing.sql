@@ -1,0 +1,5 @@
+ALTER TABLE ml_planes
+
+ADD COLUMN monthly_price DECIMAL(10,2) NOT NULL DEFAULT 0.00 AFTER slug,
+ADD COLUMN semiannual_price DECIMAL(10,2) NOT NULL DEFAULT 0.00 AFTER monthly_price,
+ADD COLUMN annual_price DECIMAL(10,2) NOT NULL DEFAULT 0.00 AFTER semiannual_price;

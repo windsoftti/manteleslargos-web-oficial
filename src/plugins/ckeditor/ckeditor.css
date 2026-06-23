@@ -1,0 +1,11 @@
+.ck.ck-editor {
+  width: 100% !important;
+}
+
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+  flex-wrap: wrap !important;
+}
+
+.ck-editor__editable {
+  min-height: 200px !important;
+}

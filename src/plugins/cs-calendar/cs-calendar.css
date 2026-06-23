@@ -1,0 +1,442 @@
+/* @import url('https://fonts.googleapis.com/css?family=Inter:bold,900,800,700,600,500,400,600,300'); */
+
+.cs-calendar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  /* font-family: "Inter", sans-serif; */
+}
+
+/* Inline months :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.cs-calendar>.cs-calendar-inline-months {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.inline-months {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.inline-months>a {
+  display: none;
+  flex-direction: column;
+  min-width: 8.5rem;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  /* border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5; */
+  padding: 0.8rem;
+  text-decoration: none;
+  color: #333;
+  transition: 0.2s;
+  text-transform: capitalize;
+}
+
+/* .cs-calendar>.cs-calendar-inline-months>.inline-months>a:hover {
+  background-color: #f4b33970;
+} */
+
+.cs-calendar>.cs-calendar-inline-months>.inline-months>a.active {
+  display: flex;
+  /* background: #f4b339; */
+  color: #000;
+  cursor: default;
+  /* border-width: 0.35rem; */
+  /* border-color: #f4b339; */
+  border-radius: 5px;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.inline-months>a>h1 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.inline-months>a>h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* .cs-calendar>.cs-calendar-inline-months>.inline-months>a.active>h1 {
+  color: #fff;
+} */
+
+/* .cs-calendar>.cs-calendar-inline-months>.inline-months>a.active>h3 {
+  color: #fff;
+} */
+
+.cs-calendar>.cs-calendar-inline-months>.arrow {
+  display: flex;
+  /* background-color: #D78B00; */
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  padding: 0.2rem;
+  cursor: pointer;
+  border: 0.1rem solid #000;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow::after {
+  content: "";
+  background-image: url('./arrow.svg');
+  background-size: contain;
+  display: flex;
+  height: 1rem;
+  width: 1rem;
+  position: relative;
+  transition: 0.2s;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow.back::after {
+  transform: rotate(-90deg);
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow.back {
+  margin-right: 0.5rem;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow.next::after {
+  transform: rotate(90deg);
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow.next {
+  margin-left: 0.5rem;
+}
+
+.cs-calendar>.cs-calendar-inline-months>.arrow.active {
+  background-color: #333;
+}
+
+/* Months :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.cs-calendar-months {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-calendar-month {
+  display: none;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.cs-calendar-month.active {
+  display: flex;
+}
+
+.cs-calendar-title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+
+.cs-calendar-weeks {
+  display: flex;
+  width: 100%;
+  /* background-color: #e5e5e5; */
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-calendar-weeks>ul {
+  display: grid;
+  width: 100%;
+  list-style: none;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0.6rem 0.3rem;
+  margin: 0;
+}
+
+.cs-calendar-weeks>ul>li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #959595;
+  text-transform: capitalize;
+}
+
+/* Days :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.cs-calendar-days {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-calendar-days>ul {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0;
+  margin: 0;
+}
+
+.cs-calendar-days>ul>li {
+  display: flex;
+  flex: 1;
+  min-height: 3rem;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.1rem;
+  /* border-bottom: 0.3px solid rgb(240, 240, 240);
+  border-left: 0.3px solid rgb(240, 240, 240); */
+  /* font-weight: 500; */
+  transition: 0.2s;
+  /* background-color: rgb(0, 200, 117); */
+  /* background-color: #36BD59; */
+  /* background-color: #fff; */
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.cs-calendar-days>ul>li>a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  color: #03b62a;
+  border-radius: 0.3rem;
+  border: 0.2rem solid transparent;
+}
+
+.cs-calendar-days li.active>a {
+  border-color: #1a73e8;
+}
+
+.cs-calendar-days li.occupied>a {
+  color: #E74C3C;
+}
+
+.cs-calendar-days li.free>a {
+  /* background-color: #fff; */
+  color: #03b62a;
+}
+
+.cs-calendar-days li.with-spaces>a {
+  /* border-color: #fff; */
+  color: #FAAF3B;
+}
+
+/* .cs-calendar-days>ul>li:not(.occupied, .with-spaces):hover {
+  background-color: #f4b33970;
+} */
+
+.cs-calendar-days .actions {
+  display: flex;
+  width: 100%;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.2rem;
+}
+
+/* .cs-calendar-days .actions>a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #D78B00;
+  border-radius: 30rem;
+  text-decoration: none;
+  padding: 0;
+}
+
+.cs-calendar-days .events {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.cs-calendar-days .events>a {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f4b339;
+  text-decoration: none;
+  font-size: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #000;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+} */
+
+/* .cs-calendar-days .events>a>span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.cs-calendar-days .actions>a.plus::after {
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  background-image: url('./plus.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+} */
+
+/* .cs-calendar-days li.active .actions span {
+  display: flex;
+  height: 1.2rem;
+  width: 1.2rem;
+  background-color: #DD0063;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30rem;
+  color: #fff;
+} */
+
+/* .cs-calendar-days li.occupied {
+  background-color: #E74C3C;
+} */
+
+.cs-calendar-days li.occupied .actions span {
+  color: #fff;
+}
+
+/* .cs-calendar-days li.with-spaces {
+  background-color: #FDD835;
+} */
+
+.cs-calendar-days li.occupied .actions {
+  justify-content: flex-end;
+}
+
+.cs-calendar-days li.occupied .actions>a.plus {
+  display: none;
+}
+
+.cs-calendar-days li.disabled {
+  opacity: 0.5;
+}
+
+.cs-calendar-days li.disabled .actions>a.plus {
+  display: none;
+}
+
+.cs-calendar-days li.disabled .actions {
+  justify-content: flex-end;
+}
+
+.cs-calendar-stats {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.cs-calendar-stats>li {
+  display: flex;
+  font-size: 0.7rem;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+  color: #959595;
+}
+
+.cs-calendar-stats>li::before {
+  content: "";
+  display: flex;
+  height: 0.8rem;
+  width: 0.8rem;
+  background-color: #03b62a;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.3rem;
+  border: 0.1rem solid transparent;
+}
+
+.cs-calendar-stats>li.occupied::before {
+  background-color: #E74C3C;
+}
+
+.cs-calendar-stats>li.with-spaces::before {
+  background-color: #FAAF3B;
+}
+
+/* .cs-calendar-days li.with-spaces.active .actions span {
+  border: 1px solid #fafafa;  
+} */
+
+/* .cs-calendar-days li.occupied.active .actions span {
+  border: 1px solid #fafafa;  
+} */
+
+/* .cs-calendar-days li.with-spaces a {  
+  background-color: #F5B041;
+} */
+
+/* .cs-calendar-days li.occupied a {
+  border: 1px solid #fafafa;  
+} */
+
+/* .cs-calendar-days>ul>li:hover {
+  background-color: #f4b33970;
+} */
+
+/* @media (min-width: 600px) {
+  .cs-calendar>.cs-calendar-inline-months>.inline-months>a {
+    display: flex;
+  }
+
+  .cs-calendar>.cs-calendar-inline-months>.arrow.back {
+    margin-right: -1rem;
+  }
+
+  .cs-calendar>.cs-calendar-inline-months>.arrow.next {
+    margin-left: -1rem;
+  }
+
+  .cs-calendar-days .actions {
+    flex-direction: row;
+  }
+} */

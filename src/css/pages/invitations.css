@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:bold,900,800,700,600,500,400,600,300');
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Invitation navbar
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.invitations-navbar {
+  width: 100%;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 0px 24px -8px rgb(0 0 0 / 20%);
+  margin-bottom: 0.5rem;
+}
+
+.invitations-navbar>ul {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  list-style: none;
+  margin: 0;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+.invitations-navbar>ul>li {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitations-navbar>ul>li>a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #081314;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.invitations-navbar>ul>li>a>span {
+  margin-top: 0.5rem;
+}
+
+.invitations-navbar>ul>li>a>img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.invitations-navbar>ul>li>a>img.hover {
+  display: none;
+}
+
+.invitations-navbar>ul>li>a:hover>img {
+  display: none;
+}
+
+.invitations-navbar>ul>li>a:hover>img.hover {
+  display: flex;
+}
+
+.invitations-navbar>ul>li.active img {
+  display: none;
+}
+
+.invitations-navbar>ul>li.active img.hover {
+  display: flex;
+}
+
+.invitations-navbar>div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 5%;
+}
+
+.invitations-navbar>div>div.title {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.invitations-navbar>div>div.title>h1 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-family: "Dancing Script";
+  font-weight: bold;
+}
+
+.invitations-navbar>div>div.options {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.invitations-navbar>div>div.options>ul {
+  display: flex;
+  padding: 0;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.invitations-navbar>div>div.options>ul>li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitations-navbar>div>div.options>ul>li>a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.invitations-navbar>div>div.options>ul>li>a>ion-icon {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Templates slider
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+.templates-content {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.templates-content>div {
+  width: 100%;
+}
+
+.place-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.place-heading>a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red-color);
+}
+
+.invitation-card {
+  padding: 0.5rem;
+}
+
+.invitation-card .invitation-content {
+  display: none;
+}
+
+.invitation-card.active .invitation-content {
+  display: flex;
+}
+
+.invitation-card.active .btn-add-invitation-content {
+  display: none;
+}
+
+/* .invitation-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-list {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem;
+}
+
+.invitation-list-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.03rem solid #99999960;
+}
+
+.invitation-list-header .filters {  
+  width: 100%;
+}
+
+.invitation-list-body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.invitation-list-footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.invitation-list-footer .pagination {
+  justify-content: flex-end;
+}
+
+.invitations {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitations>div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.03rem solid #99999960;
+}
+
+.invitations>div>.img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitations>div>.img img {
+  height: 4rem;
+  width: 4rem;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+.invitations>div>div.info {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.invitations>div>div.info h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.invitations>div>div.info h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  font-weight: normal;
+}
+
+.invitation-item .actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-item .actions .btn {
+  padding: 0.1rem;
+  margin: 0;
+  border-radius: 0;
+}
+
+.invitation-item .actions .btn:first-child {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.invitation-item .actions .btn:last-child {
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.invitation-item .actions .btn ion-icon {
+  font-size: 1rem;
+} */
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- INVITACIONES
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.invitations-section {
+  /* display: flex; */
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitations-section .list {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitations-section .list .search {
+  width: 100%;
+}
+
+.invitations-section .list .content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2.5rem 0;
+}
+
+.invitations-section .list .content .items {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-item {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1rem solid #00000080;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.invitation-item .top {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.invitation-item img {
+  width: 100%;
+  height: 70vw;
+  object-fit: cover;
+}
+
+.invitation-item .bottom {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.invitation-item h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.invitation-item h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  font-weight: normal;
+}
+
+.invitation-item .actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.invitation-item .actions .btn {
+  padding: 0.1rem;
+  margin: 0;
+  border-radius: 0;
+}
+
+.invitation-item .actions .btn:first-child {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.invitation-item .actions .btn:last-child {
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.invitation-item .actions .btn ion-icon {
+  font-size: 1rem;
+}
+
+.invitation-pagination {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.invitation-pagination ion-icon {
+  font-size: 2rem;
+}
+
+.invitations-section .preview {
+  display: flex;
+  height: calc(100vh - 7rem);
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: */
+.invitations-section .preview {
+  display: flex;
+  /* width: 100%; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: sticky;
+  top: 6.5rem;
+  margin-right: 0.5rem;
+}
+
+.invitations-section .preview .top {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.invitations-section .preview img {
+  width: 100%;
+  height: 67vh;
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+.invitations-section .preview .bottom {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.invitations-section .preview h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.invitations-section .preview h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  font-weight: normal;
+}
+
+.invitations-section .preview .actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.invitations-section .preview .actions .btn {
+  padding: 0.1rem;
+  margin: 0;
+  border-radius: 0;
+}
+
+.invitations-section .preview .actions .btn:first-child {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.invitations-section .preview .actions .btn:last-child {
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.invitations-section .preview .actions .btn ion-icon {
+  font-size: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Media queries 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+@media screen and (min-width: 35.5em) {
+  .select-template {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .invitations-navbar>div>div.title {
+    display: flex;
+  }
+
+  .invitations-navbar>div>div.title>h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 1024px -- md */
+@media screen and (min-width: 64em) {
+  .invitations-navbar>div {
+    padding: 0.5rem 15%;
+  }
+
+  .invitations-navbar>div>div.title>h1 {
+    font-size: 2.5rem;
+  }
+
+  .invitations-navbar>div>div.options>ul {
+    margin-bottom: auto;
+  }
+
+  .d-invitation {
+    margin-top: -5rem;
+    margin-right: 30%;
+  }
+
+  .img-section>img {
+    width: 100%;
+    object-fit: cover;
+    height: 24rem;
+    object-position: bottom;
+  }
+
+  .invitations-navbar {
+    margin-top: 0.5rem;
+  }
+
+  .invitations-navbar>div {
+    display: flex;
+  }
+
+  .invitations-navbar>ul {
+    justify-content: flex-start;
+    padding: 1rem 15%;
+    gap: 3.5rem;
+  }
+
+  .invitations-navbar>ul>li {
+    flex: 0;
+    border-right: 0.1rem solid #99999990;
+    padding-right: 3.5rem;
+  }
+
+  .invitations-navbar>ul>li>a>img {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  .invitations-navbar>ul>li>a {
+    font-size: 0.85rem;
+  }
+
+  .invitation-item .actions {
+    flex-direction: row;
+  }
+
+  .invitation-item .actions .btn {
+    padding: 0.3rem;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .invitation-item .actions .btn:first-child {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+  }
+  
+  .invitation-item .actions .btn:last-child {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+
+  .invitation-item .actions .btn:first-child {
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0;
+  }
+  
+  .invitation-item .actions .btn:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0.3rem;
+  }
+
+  .invitation-item img {
+    width: 100%;
+    height: 35vh;
+    object-fit: cover;
+  }
+
+  /* .invitation-item {
+    border-bottom: none;
+  } */
+}

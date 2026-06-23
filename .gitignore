@@ -1,0 +1,26 @@
+# =========================
+# CONFIGURACIÓN SENSIBLE
+# =========================
+manteles/inc/config.inc.php
+manteles/mi-cuenta/inc/config.inc.php
+manteles/sysmanteles/inc/config.inc.php
+
+# =========================
+# HTACCESS (NO SUBIR POR AHORA)
+# =========================
+manteles/.htaccess
+manteles/_.htaccess
+
+# =========================
+# SISTEMA / GENERAL
+# =========================
+.env
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# SO
+.DS_Store
+Thumbs.db

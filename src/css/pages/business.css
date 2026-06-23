@@ -1,0 +1,619 @@
+.global-search-section {
+  margin-top: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Business section
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.business-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.business-section>section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.business-section>section.content-left {
+  background-color: #fff;
+}
+
+.business-section>section.content-right {
+  padding: 1rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Business navigation
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.business-navigation {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.business-navigation ul {
+  display: flex;
+  width: 100%;
+  min-height: 2.5rem;
+  background-color: #333;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  list-style: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.business-navigation ul li {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.business-navigation ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.7rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Business information
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.business-information {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: 1.5rem;
+}
+
+.business-information>div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.business-information>div h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+}
+
+.business-information>div p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.business-information>div .list-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.business-information>div .list-items>li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.business-information>div .list-items>li::before {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0.8rem;
+  width: 0.8rem;
+  background-color: var(--primary-color);
+  margin-right: 0.3rem;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- Business packages
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.business-packages {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.business-packages>li {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 0.8rem;
+  gap: 0.1rem;
+}
+
+.business-packages>li>.package-header {
+  display: flex;
+  width: 100%;
+  background-color: rgb(218, 218, 218);
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  color: #000;
+  font-size: 1.3rem;
+
+}
+
+li.recomendado-Si>.package-header {
+  background-color: #b88c1c !important;
+  color: #000;
+  box-shadow: 1px 1px 5px #aaaaaa;
+}
+
+li.recomendado-Si>.package-header>span {
+  display: flex
+}
+
+li.recomendado-Si>.package-header div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+li.recomendado-Si>.package-header label {
+  font-size: 14px;
+  font-weight: bold;
+  background: #faaf3b;
+  border-radius: 20px;
+  padding: 3px 0px 3px 0px;
+}
+
+.business-packages>li>.package-header::after {
+  content: "";
+  background-image: url('../../assets/images/arrow-up-black.svg');
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  position: relative;
+  transform: rotate(-180deg);
+  transition: 0.2s;
+}
+
+.business-packages>li>.package-body {
+  display: none;
+  width: 100%;
+  background-color: rgb(218, 218, 218);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.business-packages>li.open>.package-header {
+  font-weight: bold;
+}
+
+.business-packages>li.open>.package-header::after {
+  transform: rotate(0);
+}
+
+.business-packages>li>.package-body .price {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.business-packages>li>.package-body .price>h2 {
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.business-packages>li>.package-body .price>a {
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  font-weight: bold;
+}
+
+.business-packages>li>.package-body .price>a ion-icon {
+  font-size: 1rem;
+  margin-right: 0.4rem;
+}
+
+.business-packages>li>.package-body .modality {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.business-packages>li>.package-body .modality>h2 {
+  color: #000;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+.business-packages>li>.package-body .modality>h3 {
+  color: #000;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.business-packages>li>.package-body .btn-request-package {
+  display: flex;
+  background-color: #000;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  color: #fff;
+  font-weight: bold;
+  font-weight: 1rem;
+}
+
+.business-packages>li>.package-body .description {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.business-packages>li>.package-body .description>h2 {
+  font-size: 1rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.business-packages>li>.package-body .description>ul {
+  margin: 0;
+  /* list-style: '✓'; */
+  list-style: none;
+  padding-left: 0.5rem;
+}
+
+.business-packages>li>.package-body .description>ul>li {
+  font-size: 0.8rem;
+}
+
+.business-packages>li>.package-body .description>ul>li::before {
+  content: "✓";
+  color: var(--primary-color);
+  /* Change the color */
+  font-weight: bold;
+  /* If you want it to be bold */
+  display: inline-block;
+  /* Needed to add space between the bullet and the text */
+  width: 1em;
+  /* Also needed for space (tweak if needed) */
+  margin-left: -1em;
+}
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//-- map
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.map {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.map>p {
+  font-size: 0.9rem;
+  color: #000;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.map a {
+  color: #FAAF3B;
+  font-weight: bold;
+}
+
+.map>div {
+  height: 100%;
+  width: 100%;
+  min-height: 60vh;
+}
+
+.cs-slider.thumbs .dots {
+  bottom: 1rem;
+}
+
+.slider-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.slider-section .business-slider {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slider-section .business-slider img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.slider-section .business-slider-nav {
+  display: none;
+  gap: 1rem;
+}
+
+.slider-section .business-slider-nav img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* HEADER */
+.business-header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 5rem;
+}
+
+.business-header>img {
+  height: 12rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.business-header>div {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  padding-top: 3rem;
+}
+
+.business-header>div h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.business-header>div .social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.business-header>div .social-links a {
+  color: #fff;
+  transition: 0.3s;
+  margin-top: 0.1rem;
+}
+
+.business-header>div .social-links a:hover {
+  color: var(--primary-color);
+}
+
+.business-header>div .social-links a>ion-icon {
+  font-size: 2rem;
+}
+
+.business-header>div .supplier-logo {
+  height: 8rem;
+  width: 8rem;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  position: absolute;
+  bottom: -4rem;
+  border: 0.2rem solid #fff;
+}
+
+.business-header>div .supplier-logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.business-share {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 2rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+.business-share .bs-btn {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  justify-content: center;
+  padding: 0.3rem 0.5rem;
+  border: 0.1rem solid #333;
+  gap: 0.3rem;
+  color: #333;
+  font-size: 0.8rem;
+  border-radius: 0.3rem;
+  z-index: 1;
+  margin-left: 0.5rem;
+}
+
+.business-share .bs-btn ion-icon {
+  font-size: 1rem;
+}
+
+.business-share .bs-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-right: -6rem;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.business-share.open .bs-icons {
+  margin-right: 0;
+  opacity: 1;
+}
+
+.business-share .bs-icons a {
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #999;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+}
+
+.business-share .bs-icons a ion-icon {
+  font-size: 1rem;
+  color: #fff;
+}
+
+@media screen and (min-width: 48em) {
+  .business-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .business-section>section {
+    flex: 1;
+  }
+
+  .cs-slider.thumbs .thumbs {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .business-section {
+    padding: 2rem 6%;
+  }
+
+  .cs-slider.thumbs .thumbs {
+    display: flex;
+  }
+
+  .cs-slider.thumbs .dots {
+    bottom: 8.5rem;
+  }
+
+  .business-navigation {
+    display: none;
+  }
+
+  .business-section>section.content-left {
+    flex: auto;
+    width: 65%;
+    background-color: #fff;
+  }
+
+  .business-section>section.content-left .cs-slider {
+    margin: 2rem;
+  }
+
+  .business-section>section.content-right {
+    flex: auto;
+    width: 35%;
+    /* position: sticky;
+    top: 8rem; */
+  }
+
+  .cs-slider .imgs img {
+    height: 60vh !important;
+    border-radius: 0.5rem;
+  }
+
+  .slider-section .business-slider img {
+    height: 60vh;
+  }
+
+  .slider-section .business-slider-nav {
+    display: inline-block;
+  }
+
+  .slider-section .business-slider-nav img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  /* HEADER */
+  .business-header>div .supplier-logo {
+    left: 10rem;
+  }
+
+  .business-header>div {
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .business-header>div h1 {
+    font-size: 2.3rem;
+  }
+}

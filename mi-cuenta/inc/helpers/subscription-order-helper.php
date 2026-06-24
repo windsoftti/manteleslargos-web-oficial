@@ -480,6 +480,45 @@ function markOrderAsPaid(
     ];
 }*/
 
+function updateOrderProviderData(
+    int $orderId,
+    string $provider,
+    ?string $providerOrderId = null
+): bool
+{
+    global $mysqli;
+
+    $sql = "
+        UPDATE
+            ml_subscription_orders
+        SET
+            provider = ?,
+            provider_order_id = ?,
+            updated_at = NOW()
+        WHERE
+            id_order = ?
+        LIMIT 1
+    ";
+
+    $stmt = $mysqli->prepare($sql);
+
+    if (!$stmt) {
+        return false;
+    }
+
+    $providerOrderId =
+    $providerOrderId ?: null;
+
+    $stmt->bind_param(
+        'ssi',
+        $provider,
+        $providerOrderId,
+        $orderId
+    );
+
+    return $stmt->execute();
+}
+
 function getBillingCycleLabel(
     string $cycle
 ): string

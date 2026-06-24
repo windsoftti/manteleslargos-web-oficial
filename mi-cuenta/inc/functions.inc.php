@@ -4,6 +4,9 @@ require_once __DIR__ . '/helpers/business-plan-helper.php';
 require_once __DIR__ . '/helpers/subscription-helper.php';
 require_once __DIR__ . '/helpers/subscription-order-helper.php';
 require_once __DIR__ . '/helpers/subscription-history-helper.php';
+require_once __DIR__ . '/helpers/payment-helper.php';
+require_once __DIR__ . '/helpers/settings-helper.php';
+require_once __DIR__ . '/helpers/mercadopago-helper.php';
 
 function mysqli_query_one_row($query)
 {

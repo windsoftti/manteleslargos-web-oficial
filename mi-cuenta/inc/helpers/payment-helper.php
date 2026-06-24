@@ -2,11 +2,26 @@
 
 function isMercadoPagoEnabled(): bool
 {
-    return
+    if (
         getSetting(
             'mercadopago_enabled',
             'no'
-        ) === 'yes';
+        ) !== 'yes'
+    ) {
+
+        return false;
+    }
+
+    if (
+        empty(
+            getMercadoPagoAccessToken()
+        )
+    ) {
+
+        return false;
+    }
+
+    return true;
 }
 
 function getMercadoPagoMode(): string
@@ -35,19 +50,25 @@ function createMercadoPagoPreference(
         ];
     }
 
+    updateOrderProviderData(
+        (int) $order['id_order'],
+        'mercadopago',
+        null
+    );
+
+    /*
+    |--------------------------------------------------------------------------
+    | Próxima integración:
+    |
+    | 1. Crear preferencia Mercado Pago
+    | 2. Guardar provider_order_id
+    | 3. Retornar init_point
+    |--------------------------------------------------------------------------
+    */
+
     return [
 
         'status' => 'success',
-
-        /*
-        |--------------------------------------------------------------------------
-        | Temporal
-        |--------------------------------------------------------------------------
-        |
-        | Más adelante aquí llegará la URL
-        | real de Mercado Pago.
-        |
-        */
 
         'checkout_url' =>
             'confirmar-pago?id=' .
@@ -56,4 +77,31 @@ function createMercadoPagoPreference(
         'provider_order_id' => null
 
     ];
+}
+
+function getMercadoPagoPublicKey(): string
+{
+    return (string)
+        getSetting(
+            'mercadopago_public_key',
+            ''
+        );
+}
+
+function getMercadoPagoAccessToken(): string
+{
+    return (string)
+        getSetting(
+            'mercadopago_access_token',
+            ''
+        );
+}
+
+function getMercadoPagoWebhookSecret(): string
+{
+    return (string)
+        getSetting(
+            'mercadopago_webhook_secret',
+            ''
+        );
 }

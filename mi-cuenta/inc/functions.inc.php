@@ -2784,6 +2784,17 @@ function requirePermission(
     }
 }
 
+function getAppUrl(): string
+{
+    return rtrim(
+        getSetting(
+            'app_url',
+            'https://manteleslargos.com'
+        ),
+        '/'
+    );
+}
+
 
 //Obtener plan del negocio/// NO LA USAREMOS POR AHORA
 function getBusinessPlan(

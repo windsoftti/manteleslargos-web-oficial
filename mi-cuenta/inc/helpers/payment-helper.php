@@ -32,53 +32,6 @@ function getMercadoPagoMode(): string
     );
 }
 
-function createMercadoPagoPreference(
-    array $order
-): array
-{
-    if (
-        !isMercadoPagoEnabled()
-    ) {
-
-        return [
-
-            'status' => 'error',
-
-            'message' =>
-                'Mercado Pago deshabilitado.'
-
-        ];
-    }
-
-    updateOrderProviderData(
-        (int) $order['id_order'],
-        'mercadopago',
-        null
-    );
-
-    /*
-    |--------------------------------------------------------------------------
-    | Próxima integración:
-    |
-    | 1. Crear preferencia Mercado Pago
-    | 2. Guardar provider_order_id
-    | 3. Retornar init_point
-    |--------------------------------------------------------------------------
-    */
-
-    return [
-
-        'status' => 'success',
-
-        'checkout_url' =>
-            'confirmar-pago?id=' .
-            $order['id_order'],
-
-        'provider_order_id' => null
-
-    ];
-}
-
 function getMercadoPagoPublicKey(): string
 {
     return (string)

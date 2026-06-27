@@ -209,6 +209,195 @@ function executeMercadoPagoRequest(
     ];
 }
 
+function getMercadoPagoPayment(
+    string $paymentId
+): array
+{
+    $ch = curl_init();
+
+    curl_setopt_array(
+        $ch,
+        [
+
+            CURLOPT_URL =>
+                getMercadoPagoBaseUrl() .
+                '/v1/payments/' .
+                $paymentId,
+
+            CURLOPT_RETURNTRANSFER => true,
+
+            CURLOPT_HTTPHEADER =>
+                getMercadoPagoHeaders()
+
+        ]
+    );
+
+    $response =
+        curl_exec($ch);
+
+    $httpCode =
+        curl_getinfo(
+            $ch,
+            CURLINFO_HTTP_CODE
+        );
+
+    $curlError =
+        curl_error($ch);
+
+    curl_close($ch);
+
+    if ($curlError) {
+
+        return [
+
+            'status' => 'error',
+
+            'message' => $curlError
+
+        ];
+    }
+
+    $payment =
+        json_decode(
+            $response,
+            true
+        );
+
+    if (
+        $httpCode < 200 ||
+        $httpCode >= 300
+    ) {
+
+        return [
+
+            'status' => 'error',
+
+            'message' =>
+                $payment['message']
+                ?? 'Error consultando Mercado Pago.',
+
+            'response' => $payment
+
+        ];
+    }
+
+    return [
+
+        'status' => 'success',
+
+        'payment' => $payment
+
+    ];
+}
+
+function processMercadoPagoPayment(
+    string $paymentId
+): array
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Consultar pago
+    |--------------------------------------------------------------------------
+    */
+
+    $payment =
+        getMercadoPagoPayment(
+            $paymentId
+        );
+
+    if (
+        $payment['status']
+        !== 'success'
+    ) {
+
+        return $payment;
+    }
+
+    $payment =
+        $payment['payment'];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Validar aprobación
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        $payment['status']
+        !== 'approved'
+    ) {
+
+        return [
+
+            'status' => 'ignored',
+
+            'message' =>
+                'Pago aún no aprobado.'
+
+        ];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Obtener orden
+    |--------------------------------------------------------------------------
+    */
+
+    $orderId =
+        (int)
+        $payment['external_reference'];
+
+    $order =
+        getSubscriptionOrder(
+            $orderId
+        );
+
+    if (!$order) {
+
+        return [
+
+            'status' => 'error',
+
+            'message' =>
+                'Orden no encontrada.'
+
+        ];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Evitar doble procesamiento
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        $order['status']
+        === 'paid'
+    ) {
+
+        return [
+
+            'status' => 'success',
+
+            'message' =>
+                'La orden ya fue procesada.'
+
+        ];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Procesar orden
+    |--------------------------------------------------------------------------
+    */
+
+    return processPaidOrder(
+        $orderId,
+        $paymentId,
+        null
+    );
+}
+
 function getMercadoPagoBackUrls(): array
 {
     $appUrl = getAppUrl();

@@ -282,7 +282,7 @@ function getOrderById(
     return $result->fetch_assoc();
 }
 
-function processPaidOrder(
+/*function processPaidOrder(
     int $orderId,
     string $reference = ''
 ): array
@@ -312,12 +312,6 @@ function processPaidOrder(
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Marcar pagada
-    |--------------------------------------------------------------------------
-    */
-
     $sql = "
         UPDATE
             ml_subscription_orders
@@ -338,12 +332,6 @@ function processPaidOrder(
     );
 
     $stmt->execute();
-
-    /*
-    |--------------------------------------------------------------------------
-    | Activar suscripción
-    |--------------------------------------------------------------------------
-    */
 
     $activation =
         activatePremiumSubscription(
@@ -368,6 +356,162 @@ function processPaidOrder(
     return [
         'status' => 'success'
     ];
+}*/
+function processPaidOrder(
+    int $orderId,
+    ?string $providerPaymentId = null,
+    ?string $paymentReference = null
+): array
+{
+    global $mysqli;
+
+    $mysqli->begin_transaction();
+
+    try {
+
+        /*
+        |--------------------------------------------------------------------------
+        | Obtener orden
+        |--------------------------------------------------------------------------
+        */
+
+        $order = getSubscriptionOrder(
+            $orderId
+        );
+
+        if (!$order) {
+
+            throw new Exception(
+                'Orden no encontrada.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Evitar doble procesamiento
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            $order['status'] !== 'pending'
+        ) {
+
+            throw new Exception(
+                'La orden ya fue procesada.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Marcar orden como pagada
+        |--------------------------------------------------------------------------
+        */
+
+        $sql = "
+            UPDATE
+                ml_subscription_orders
+            SET
+                status = 'paid',
+                provider_payment_id = ?,
+                payment_reference = ?,
+                updated_at = NOW()
+            WHERE
+                id_order = ?
+        ";
+
+        $stmt = $mysqli->prepare($sql);
+
+        if (!$stmt) {
+
+            throw new Exception(
+                $mysqli->error
+            );
+        }
+
+        $stmt->bind_param(
+            'ssi',
+            $providerPaymentId,
+            $paymentReference,
+            $orderId
+        );
+
+        if (!$stmt->execute()) {
+
+            throw new Exception(
+                $stmt->error
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Activar suscripción
+        |--------------------------------------------------------------------------
+        */
+
+        $activation =
+            activatePremiumSubscription(
+                (int) $order['id_salon'],
+                $order['billing_cycle']
+            );
+
+        if (
+            $activation['status']
+            !== 'success'
+        ) {
+
+            throw new Exception(
+                $activation['message']
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Registrar historial
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            !registerSubscriptionHistory(
+                $activation['subscription_id'],
+                'payment_received',
+                'Orden #' . $orderId . ' pagada'
+            )
+        ) {
+
+            throw new Exception(
+                'No fue posible registrar el historial.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Confirmar transacción
+        |--------------------------------------------------------------------------
+        */
+
+        $mysqli->commit();
+
+        return [
+
+            'status' => 'success',
+
+            'subscription_id' =>
+                $activation['subscription_id']
+
+        ];
+
+    } catch (Throwable $e) {
+
+        $mysqli->rollback();
+
+        return [
+
+            'status'  => 'error',
+
+            'message' => $e->getMessage()
+
+        ];
+    }
 }
 
 function markOrderAsPaid(

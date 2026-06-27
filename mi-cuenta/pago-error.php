@@ -1,6 +1,6 @@
 <?php
 
-include 'inc/session.php';
+//include 'inc/session.php';
 
 $meta_title =
     'Pago cancelado';

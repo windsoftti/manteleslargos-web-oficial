@@ -16,7 +16,7 @@ $edit_permissions = verifyUserPermissions('editar-negocios');
 
               <span class="mb-1"><?= $row['TipoProveedor']; ?></span>
               <span><?= formatPhoneNumber($row['Telefono']); ?></span>
-              <span><?= $row['Correo']; ?></span>
+              <!--<span><?php //echo $row['Correo']; ?></span>-->
             </div>
 
             <div>

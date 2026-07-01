@@ -37,7 +37,7 @@
     ];
 }*/
 
-function createMercadoPagoPreference(
+/*function createMercadoPagoPreference(
     array $order
 ): array
 {
@@ -120,6 +120,165 @@ function createMercadoPagoPreference(
         (int) $order['id_order'],
         'mercadopago',
         $preference['id']
+    );
+
+    return [
+
+        'status' => 'success',
+
+        'checkout_url' =>
+            $preference['init_point'],
+
+        'provider_order_id' =>
+            $preference['id']
+
+    ];
+}*/
+
+function createMercadoPagoPreference(
+    array $order
+): array
+{
+    if (
+        !isMercadoPagoEnabled()
+    ) {
+
+        return [
+
+            'status' => 'error',
+
+            'message' =>
+                'Mercado Pago deshabilitado.'
+
+        ];
+    }
+
+    $backUrls =
+        getMercadoPagoBackUrls();
+
+    $payload = [
+
+        'items' => [
+
+            [
+
+                'id' =>
+                    (string) $order['id_order'],
+
+                'title' =>
+                    'Suscripción Premium MantelesLargos',
+
+                'description' =>
+                    'Suscripción Premium',
+
+                'quantity' => 1,
+
+                'currency_id' => 'MXN',
+
+                'unit_price' =>
+                    (float) $order['amount']
+
+            ]
+
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Identificador interno
+        |--------------------------------------------------------------------------
+        */
+
+        'external_reference' =>
+            (string) $order['id_order'],
+
+        /*
+        |--------------------------------------------------------------------------
+        | URL del Webhook
+        |--------------------------------------------------------------------------
+        */
+
+        'notification_url' =>
+            getMercadoPagoWebhookUrl(),
+
+        /*
+        |--------------------------------------------------------------------------
+        | URLs de retorno
+        |--------------------------------------------------------------------------
+        */
+
+        'back_urls' =>
+            $backUrls,
+
+        'auto_return' =>
+            'approved',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Evitar pagos pendientes largos
+        |--------------------------------------------------------------------------
+        */
+
+        'expires' => false
+
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Crear Preferencia
+    |--------------------------------------------------------------------------
+    */
+
+    $result =
+        executeMercadoPagoRequest(
+            '/checkout/preferences',
+            $payload
+        );
+
+    if (
+        $result['http_code'] < 200 ||
+        $result['http_code'] >= 300
+    ) {
+
+        writeMercadoPagoLog(
+            'Error creando preferencia',
+            $result
+        );
+
+        return [
+
+            'status' => 'error',
+
+            'message' =>
+                'No fue posible crear la preferencia.',
+
+            'response' =>
+                $result
+
+        ];
+    }
+
+    $preference =
+        $result['response'];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Guardar ID de la Preferencia
+    |--------------------------------------------------------------------------
+    */
+
+    updateOrderProviderData(
+
+        (int) $order['id_order'],
+
+        'mercadopago',
+
+        $preference['id']
+
+    );
+
+    writeMercadoPagoLog(
+        'Preferencia creada correctamente',
+        $preference
     );
 
     return [
@@ -294,6 +453,14 @@ function processMercadoPagoPayment(
     string $paymentId
 ): array
 {
+
+    writeMercadoPagoLog(
+        'Inicio processMercadoPagoPayment',
+        [
+            'payment_id' => $paymentId
+        ]
+    );
+
     /*
     |--------------------------------------------------------------------------
     | Consultar pago
@@ -304,6 +471,11 @@ function processMercadoPagoPayment(
         getMercadoPagoPayment(
             $paymentId
         );
+
+    writeMercadoPagoLog(
+        'Respuesta getMercadoPagoPayment',
+        $payment
+    );
 
     if (
         $payment['status']
@@ -316,11 +488,23 @@ function processMercadoPagoPayment(
     $payment =
         $payment['payment'];
 
+    writeMercadoPagoLog(
+        'Información del pago',
+        $payment
+    );
+
     /*
     |--------------------------------------------------------------------------
     | Validar aprobación
     |--------------------------------------------------------------------------
     */
+
+    writeMercadoPagoLog(
+        'Estado del pago',
+        [
+            'status' => $payment['status']
+        ]
+    );
 
     if (
         $payment['status']
@@ -347,10 +531,22 @@ function processMercadoPagoPayment(
         (int)
         $payment['external_reference'];
 
+    writeMercadoPagoLog(
+        'Orden obtenida desde external_reference',
+        [
+            'order_id' => $orderId
+        ]
+    );
+
     $order =
         getSubscriptionOrder(
             $orderId
         );
+
+    writeMercadoPagoLog(
+        'Orden encontrada',
+        $order ?: []
+    );
 
     if (!$order) {
 
@@ -391,11 +587,30 @@ function processMercadoPagoPayment(
     |--------------------------------------------------------------------------
     */
 
-    return processPaidOrder(
+    writeMercadoPagoLog(
+        'Iniciando processPaidOrder'
+    );
+
+    /*return processPaidOrder(
         $orderId,
         $paymentId,
         null
+    );*/
+
+    $result = 
+        processPaidOrder(
+            $orderId,
+            $paymentId,
+            null
+        );
+
+    writeMercadoPagoLog(
+        'Resultado processPaidOrder',
+        $result
     );
+
+    return $result;
+
 }
 
 function getMercadoPagoBackUrls(): array
@@ -417,4 +632,11 @@ function getMercadoPagoBackUrls(): array
             '/mi-cuenta/pago-pendiente'
 
     ];
+}
+
+function getMercadoPagoWebhookUrl(): string
+{
+    return
+        getAppUrl() .
+        '/mi-cuenta/webhook-mercadopago.php';
 }

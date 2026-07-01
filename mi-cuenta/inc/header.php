@@ -5,7 +5,7 @@
         <i class="navbar-toggler-icon"></i>
       </a>
 
-      <?php if (!$_SESSION['session_user_children_id']) : ?>
+      <?php if (empty($_SESSION['session_user_children_id'])) : ?>
         <button class="btn btn-custom-default mr-auto ml-4" data-toggle="modal" data-target="#select-business-modal">
           <i class="fa fa-building"></i> <span class="text-secondary"><?= getBusinessNameById($_SESSION['session_business_id']); ?></span>
           <i class="fa fa-caret-down ml-2"></i>

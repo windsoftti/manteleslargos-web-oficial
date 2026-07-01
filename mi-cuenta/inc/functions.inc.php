@@ -7,6 +7,7 @@ require_once __DIR__ . '/helpers/subscription-history-helper.php';
 require_once __DIR__ . '/helpers/payment-helper.php';
 require_once __DIR__ . '/helpers/settings-helper.php';
 require_once __DIR__ . '/helpers/mercadopago-helper.php';
+require_once __DIR__ . '/helpers/logger-helper.php';
 
 function mysqli_query_one_row($query)
 {
@@ -2617,6 +2618,14 @@ function verifyUserSession()
       endif;
     endif;
   endif;
+
+  if (!isset($_SESSION['session_user_children_id'])) {
+      $_SESSION['session_user_children_id'] = null;
+  }
+
+  if (!isset($_SESSION['session_user_parent'])) {
+      $_SESSION['session_user_parent'] = null;
+  }
 }
 
 function getUserData(
@@ -2789,7 +2798,8 @@ function getAppUrl(): string
     return rtrim(
         getSetting(
             'app_url',
-            'https://manteleslargos.com'
+            'https://dev.manteleslargos.com'
+            //'https://manteleslargos.com'
         ),
         '/'
     );

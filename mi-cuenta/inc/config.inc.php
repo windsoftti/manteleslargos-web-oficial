@@ -1,42 +1,137 @@
 <?php
-error_reporting(0);
-date_default_timezone_set('America/Mexico_City');
-/* $db_host      = 'localhost';
-$db_data_base = 'manteleslargos_01042022_manteles_db';
-$db_user      = 'manteleslargos_manteles_usr';
-$db_password  = 'N9$)Y!F6.vUs'; */
 
-/*$db_host      = 'localhost';
-$db_data_base  = 'manteleslargos_webdb';
-$db_user      = 'manteleslargos_usrweb';
-$db_password  = 'T%7yOhoXpjcr';*/
+/*
+|--------------------------------------------------------------------------
+| Ambiente
+|--------------------------------------------------------------------------
+*/
 
-$db_host      = 'localhost';
-$db_data_base  = 'dev_manteles';
-$db_user      = 'root';
-$db_password  = '';
+require_once __DIR__ . '/environment.php';
 
-$mysqli = new mysqli(
-  $db_host,
-  $db_user,
-  $db_password,
-  $db_data_base
+/*
+|--------------------------------------------------------------------------
+| Configuración según ambiente
+|--------------------------------------------------------------------------
+*/
+
+switch (APP_ENV) {
+
+    case 'local':
+
+        require_once __DIR__ . '/config/local.php';
+
+        break;
+
+    case 'development':
+
+        require_once __DIR__ . '/config/development.php';
+
+        break;
+
+    default:
+
+        require_once __DIR__ . '/config/production.php';
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Configuración PHP
+|--------------------------------------------------------------------------
+*/
+
+error_reporting(
+    $appConfig['debug']
+        ? E_ALL
+        : 0
 );
 
-$protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === 0 ? 'https://' : 'http://';
-$url_host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+date_default_timezone_set(
+    $appConfig['timezone']
+);
+
+/*
+|--------------------------------------------------------------------------
+| Variables compatibles con el proyecto actual
+|--------------------------------------------------------------------------
+*/
+
+$db_host =
+    $appConfig['database']['host'];
+
+$db_data_base =
+    $appConfig['database']['database'];
+
+$db_user =
+    $appConfig['database']['username'];
+
+$db_password =
+    $appConfig['database']['password'];
+
+/*
+|--------------------------------------------------------------------------
+| Conexión MySQL
+|--------------------------------------------------------------------------
+*/
+
+$mysqli = new mysqli(
+
+    $db_host,
+
+    $db_user,
+
+    $db_password,
+
+    $db_data_base
+
+);
 
 if ($mysqli->connect_error) {
-  $json = 'no';
-  echo json_encode($json);
-  die();
+
+    die(
+        'Error de conexión.'
+    );
+
 }
 
-if (!$mysqli->connect_error) {
-  $mysqli->set_charset('utf8');
+$mysqli->set_charset(
+    'utf8'
+);
 
-  $secret = '@sistema/_-rentas/_-salones-fiestas/_-2021/_-IEM/_-IYS_-s0f74r3';
+/*
+|--------------------------------------------------------------------------
+| URL base
+|--------------------------------------------------------------------------
+*/
 
-  $images_url     = '../../src/assets/images/';
-  $images_absolute_url = $url_host . 'src/assets/images/';
-}
+$protocol =
+    $appConfig['site']['scheme'];
+
+$host =
+    $appConfig['site']['host'];
+
+$baseFolder =
+    $appConfig['site']['base_folder'];
+
+$url_host =
+    $protocol .
+    '://' .
+    $host .
+    $baseFolder .
+    '/';
+
+/*
+|--------------------------------------------------------------------------
+| Compatibilidad
+|--------------------------------------------------------------------------
+*/
+
+$secret =
+    '@sistema/_-rentas/_-salones-fiestas/_-2021/_-IEM/_-IYS_-s0f74r3';
+
+$images_url =
+    '../../src/assets/images/';
+
+$images_absolute_url =
+    $url_host .
+    'src/assets/images/';

@@ -2,12 +2,12 @@
 
 include 'inc/bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+/*if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     echo 'Webhook Mercado Pago operativo.';
 
     exit;
-}
+}*/
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,13 @@ $payload =
         'php://input'
     );
 
+writeMercadoPagoLog(
+    'Webhook recibido',
+    [
+        'payload' => $payload
+    ]
+);
+
 if (empty($payload)) {
 
     http_response_code(400);
@@ -35,6 +42,11 @@ $data =
         $payload,
         true
     );
+
+writeMercadoPagoLog(
+    'Webhook decodificado',
+    $data
+);
 
 if (
     empty($data['type'])
@@ -70,6 +82,13 @@ if (
 $paymentId =
     $data['data']['id'] ?? null;
 
+writeMercadoPagoLog(
+    'Payment ID recibido',
+    [
+        'payment_id' => $paymentId
+    ]
+);
+
 if (!$paymentId) {
 
     http_response_code(400);
@@ -83,10 +102,19 @@ if (!$paymentId) {
 |--------------------------------------------------------------------------
 */
 
+writeMercadoPagoLog(
+    'Procesando pago'
+);
+
 $result =
     processMercadoPagoPayment(
         (string) $paymentId
     );
+
+writeMercadoPagoLog(
+    'Resultado del procesamiento',
+    $result
+);
 
 /*
 |--------------------------------------------------------------------------

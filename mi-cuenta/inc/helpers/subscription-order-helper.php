@@ -365,7 +365,20 @@ function processPaidOrder(
 {
     global $mysqli;
 
+    writeMercadoPagoLog(
+        'Inicio processPaidOrder',
+        [
+            'order_id' => $orderId,
+            'provider_payment_id' => $providerPaymentId,
+            'payment_reference' => $paymentReference
+        ]
+    );
+
     $mysqli->begin_transaction();
+
+    writeMercadoPagoLog(
+        'BEGIN TRANSACTION'
+    );
 
     try {
 
@@ -377,6 +390,11 @@ function processPaidOrder(
 
         $order = getSubscriptionOrder(
             $orderId
+        );
+
+        writeMercadoPagoLog(
+            'Orden obtenida',
+            $order ?: []
         );
 
         if (!$order) {
@@ -442,6 +460,13 @@ function processPaidOrder(
             );
         }
 
+        writeMercadoPagoLog(
+            'Orden marcada como pagada',
+            [
+                'order_id' => $orderId
+            ]
+        );
+
         /*
         |--------------------------------------------------------------------------
         | Activar suscripción
@@ -453,6 +478,11 @@ function processPaidOrder(
                 (int) $order['id_salon'],
                 $order['billing_cycle']
             );
+
+        writeMercadoPagoLog(
+            'Resultado activatePremiumSubscription',
+            $activation
+        );
 
         if (
             $activation['status']
@@ -483,6 +513,10 @@ function processPaidOrder(
             );
         }
 
+        writeMercadoPagoLog(
+            'Historial registrado'
+        );
+
         /*
         |--------------------------------------------------------------------------
         | Confirmar transacción
@@ -490,6 +524,10 @@ function processPaidOrder(
         */
 
         $mysqli->commit();
+
+        writeMercadoPagoLog(
+            'COMMIT ejecutado correctamente'
+        );
 
         return [
 
@@ -503,6 +541,13 @@ function processPaidOrder(
     } catch (Throwable $e) {
 
         $mysqli->rollback();
+
+        writeMercadoPagoLog(
+            'ROLLBACK ejecutado',
+            [
+                'error' => $e->getMessage()
+            ]
+        );
 
         return [
 

@@ -93,7 +93,9 @@ endif;
             <?php if ($_SESSION['session_user_level'] === 'Usuario Final') : ?>
               <div class="d-flex flex-wrap flex-md-nowrap mb-6">
                 <div class="mr-0 mr-md-auto">
-                  <h2 class="mb-0 text-heading fs-22 lh-15">Bienvenido, <?= $personal_name[0] . ' ' . $personal_name[1]; ?>!</h2>
+                  <h2 class="mb-0 text-heading fs-22 lh-15">
+                    Bienvenido, <?= $personal_name[0] . ' ' . ($personal_name[1] ?? ''); ?>!
+                  </h2>
                 </div>
                 <div>
                   <a href="nueva-invitacion" class="btn btn-primary btn-lg">
@@ -109,16 +111,18 @@ endif;
             <?php if ($_SESSION['session_user_level'] === 'Usuario') : ?>
               <div class="d-flex flex-wrap flex-md-nowrap mb-6">
                 <div class="mr-0 mr-md-auto">
-                  <h2 class="mb-0 text-heading fs-22 lh-15">Bienvenido, <?= $personal_name[0] . ' ' . $personal_name[1]; ?>!</h2>
+                  <h2 class="mb-0 text-heading fs-22 lh-15">
+                    Bienvenido, <?= $personal_name[0] . ' ' . ($personal_name[1] ?? ''); ?>!
+                  </h2>
                   <p>¡Tenemos grandes herramientas que te ayudarán a vender más!</p>
 
-                  <?php if (!$_SESSION['session_user_children_id']) : ?>
+                  <?php if (empty($_SESSION['session_user_children_id'])) : ?>
                     <h3 class="mb-0 text-heading fs-20 lh-15">
                       <a class="text-secondary" data-toggle="modal" data-target="#select-business-modal" href="javascript:void(0)"><b class="text-dark">Administras: </b> <?= getBusinessNameById($_SESSION['session_business_id']); ?></a>
                     </h3>
                   <?php endif; ?>
 
-                  <?php if ($_SESSION['session_user_children_id']) : ?>
+                  <?php if (!empty($_SESSION['session_user_children_id'])) : ?>
                     <h3 class="mb-0 text-heading fs-20 lh-15">
                       <a class="text-secondary" href="javascript:void(0)"><b class="text-dark">Administras: </b> <?= getBusinessNameById($_SESSION['session_business_id']); ?></a>
                     </h3>
